@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_key';
 
 export default defineEventHandler((event: H3Event) => {
-  if (event.path.includes('/auth/sigin') || event.path.includes('/auth/signup') || event.path === '/') {
+  if (event.path.includes('signin') || event.path.includes('signup') || event.path === '/api/v1/' || !event.path.includes('/api/v1')) {
     return;
   }
 

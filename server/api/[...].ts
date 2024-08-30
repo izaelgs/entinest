@@ -8,7 +8,7 @@ router.post('/users', defineEventHandler(UserApplication.createUser));
 router.put('/users/:id', defineEventHandler(UserApplication.updateUser));
 router.delete('/users/:id', defineEventHandler(UserApplication.deleteUser));
 
-router.post('/auth/sigin', defineEventHandler(UserApplication.signIn));
+router.post('/auth/signin', defineEventHandler(UserApplication.signIn));
 router.post('/auth/signout', defineEventHandler(UserApplication.signOut));
 router.post('/auth/signup', defineEventHandler(UserApplication.signUp));
 router.get('/auth/getSession', defineEventHandler(UserApplication.getSession));

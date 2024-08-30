@@ -38,7 +38,7 @@ export const signIn = async (event: H3Event) => {
   });
 
   setResponseStatus(event, 200);
-  return { user: { id: user.id, email: user.email, name: user.name } };
+  return { token, user: { id: user.id, email: user.email, name: user.name } };
 };
 
 export const signOut = async (event: H3Event) => {
@@ -89,13 +89,7 @@ export const signUp = async (event: H3Event) => {
   return { token, user: { id: newUser.id, email: newUser.email, name: newUser.name } };
 };
 
-const verifyToken = (event: H3Event): { id: string; email: string } | null => {
-  const token = getCookie(event, 'auth_token')
-
-  if (!token) {
-    return null;
-  }
-
+const verifyToken = (token: string): { id: string; email: string } | null => {
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as { id: string; email: string };
     return decoded;
@@ -105,7 +99,13 @@ const verifyToken = (event: H3Event): { id: string; email: string } | null => {
 };
 
 export const getSession = async (event: H3Event) => {
-  const decodedToken = verifyToken(event);
+  const token = getCookie(event, 'auth_token')
+
+  if (!token) {
+    return null;
+  }
+
+  const decodedToken = verifyToken(token);
 
   if (!decodedToken) {
     setResponseStatus(event, 401);
@@ -120,7 +120,7 @@ export const getSession = async (event: H3Event) => {
   }
 
   setResponseStatus(event, 200);
-  return { user: { id: user.id, email: user.email, name: user.name } };
+  return { token, user: { id: user.id, email: user.email, name: user.name } };
 };
 
 export const findAll = async (event: H3Event) => {
