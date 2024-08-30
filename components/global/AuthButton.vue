@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-const { data: user, signOut } = useAuth()
+const { data, signOut } = useAuth()
 const route = useRoute();
 
 const items = computed(() => [
   [{
-    label: user.value?.email ?? '',
+    label: data.value?.user.email ?? '',
     slot: 'account',
     disabled: true,
   }],
@@ -26,11 +26,11 @@ const items = computed(() => [
 </script>
 
 <template>
-  <div v-if="user" class="flex items-center gap-2">
+  <div v-if="data" class="flex items-center gap-2">
     <NuxtLink v-if="!route.path.startsWith('/app')" to="/app">
       Dashboard
     </NuxtLink>
-    <span v-else class="text-sm">{{ user?.name }}</span>
+    <span v-else class="text-sm">{{ data.user?.name }}</span>
     <UDropdown :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }">
       <UAvatar icon="i-solar-user-bold-duotone" />
 

@@ -15,7 +15,7 @@
 					>
 				</h2>
 				<p class="max-w-2xl mx-auto">
-					More than a organizer. This is a fully project builder with all
+					More than an organizer. This is a fully resolver with all
 					the essential module builders you need to build your nestjs api.
 				</p>
 				<div

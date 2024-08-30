@@ -48,11 +48,14 @@ export default defineNuxtConfig({
       },
       session: {
         dataType: {
-          id: 'string',
-          email: 'string',
-          name: 'string',
-          createdAt: 'Date',
-          updatedAt: 'Date',
+          token: 'string',
+          user: {
+            id: 'string',
+            email: 'string',
+            name: 'string',
+            createdAt: 'Date',
+            updatedAt: 'Date',
+          }
         },
       },
     },
